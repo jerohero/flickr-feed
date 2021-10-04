@@ -3,7 +3,7 @@ const express = require('express'),
       https = require('https'),
       http = require('http'),
       cors = require('cors'),
-      photoRouter = require('./routes/PhotoRoutes')
+      photoRouter = require('./routes/photoRoutes')
 require('dotenv').config()
 
 const { FRONTEND_URL, PORT } = process.env
