@@ -1,0 +1,27 @@
+@import '../../styles/index';
+
+nav {
+  display: flex;
+  padding-top: 11px;
+  padding-bottom: 9px;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  position: fixed;
+  width: 100%;
+
+  #header-text {
+    font-size: 48px;
+    color: $light;
+    font-weight: bold;
+    background: -webkit-linear-gradient(-90deg, white 0%, transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 3px transparent;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+  }
+}

@@ -1,10 +1,14 @@
 import React from 'react'
 import './main.scss'
+import Header from '../../components/header'
 
 function Main(props) {
     return (
         <div className={ 'main' }>
-            { props.children }
+            <Header />
+            <div className={ 'mainContent' }>
+                { props.children }
+            </div>
         </div>
     )
 }

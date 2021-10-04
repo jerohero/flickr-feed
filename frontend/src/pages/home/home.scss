@@ -1,0 +1,20 @@
+@import '../../styles/index.scss';
+
+.home {
+  &Content {
+    margin-top: 180px;
+
+    &Search {
+      @include card;
+      height: 64px;
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+
+    &Body {
+      @include card;
+      height: 772px;
+      padding: 0 16px;
+    }
+  }
+}

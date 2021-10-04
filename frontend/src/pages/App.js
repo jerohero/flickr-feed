@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React from 'react'
-import Photos from './photos'
+import Home from './home'
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/' exact component={ Photos }/>
+        <Route path='/' exact component={ Home }/>
       </Switch>
     </Router>
   )

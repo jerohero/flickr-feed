@@ -1,3 +1,10 @@
+@import '../../styles/index.scss';
+
 .main {
-  background-color: red;
+  display: flex;
+  justify-content: center;
+
+  &Content {
+    width: $wrapper-width;
+  }
 }
