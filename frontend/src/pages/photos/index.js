@@ -1,15 +1,15 @@
 import React from 'react'
-import styles from './photos.scss'
+import './photos.scss'
 import Main from '../../layouts/main'
 
 function Photos() {
     return (
         <Main>
-            <div className={ styles.photos }>
+            <div className={ 'photos' }>
                 <p>Photos</p>
             </div>
         </Main>
-    );
+    )
 }
 
 export default Photos
