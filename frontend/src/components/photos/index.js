@@ -12,13 +12,22 @@ function Photos() {
     }, [])
 
     const fetchPublicFeed = () => {
-        axios.get(process.env.REACT_APP_API_URL + '/photo')
+        // axios.get(process.env.REACT_APP_API_URL + '/photo/')
+        //     .then((res) => {
+        //         if (!res.data) {
+        //             return
+        //         }
+        //
+        //         setPhotos(parsePhotos(res.data.items))
+        //     })
+
+        axios.get(process.env.REACT_APP_API_URL + '/photo/search/dog')
             .then((res) => {
                 if (!res.data) {
                     return
                 }
 
-                setPhotos(parsePhotos(res.data.items))
+                setPhotos(parsePhotos(res.data.photos.photo))
             })
     }
 
@@ -27,7 +36,7 @@ function Photos() {
     }
 
     const parsePhoto = (photo) => {
-        return <Photo photo={ photo } key={ photo.link }/>
+        return <Photo photo={ photo } key={ photo.id ? photo.id : photo.link }/>
     }
 
     return (

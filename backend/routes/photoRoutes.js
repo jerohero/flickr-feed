@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get('/', photoController.getPhotoFeed)
 
+router.get('/search/:keyword', photoController.getPhotosByKeyword)
+
 module.exports = router
