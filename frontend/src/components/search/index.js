@@ -15,7 +15,10 @@ function Search(props) {
     }, [keyword])
 
     const search = () => {
-        console.log(keyword.target.value)
+        if (!keyword)
+            return
+
+        props.onSearch(keyword.target.value)
     }
 
     return (

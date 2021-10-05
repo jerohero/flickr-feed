@@ -1,15 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import axios from 'axios'
 import Masonry from 'react-masonry-css'
 import './photos.scss'
 import Photo from '../photo'
 
-function Photos() {
+const Photos = forwardRef((props, ref) => {
     const [photos, setPhotos] = useState([])
 
     useEffect(() => {
         fetchPublicFeed()
     }, [])
+
+    useImperativeHandle(ref, () => ({
+        fetchPhotosByKeyword: (keyword) => {
+            fetchPhotosByKeyword(keyword)
+        },
+        fetchPublicFeed: () => {
+            fetchPublicFeed()
+        }
+    }))
 
     const fetchPublicFeed = () => {
         axios.get(process.env.REACT_APP_API_URL + '/photo/')
@@ -20,15 +29,17 @@ function Photos() {
 
                 setPhotos(parsePhotos(res.data.items))
             })
+    }
 
-        // axios.get(process.env.REACT_APP_API_URL + '/photo/search/dog')
-        //     .then((res) => {
-        //         if (!res.data) {
-        //             return
-        //         }
-        //
-        //         setPhotos(parsePhotos(res.data.photos.photo))
-        //     })
+    const fetchPhotosByKeyword = (keyword) => {
+        axios.get(process.env.REACT_APP_API_URL + '/photo/search/' + keyword)
+            .then((res) => {
+                if (!res.data) {
+                    return
+                }
+
+                setPhotos(parsePhotos(res.data.photos.photo))
+            })
     }
 
     const parsePhotos = (photos) => {
@@ -50,6 +61,6 @@ function Photos() {
             </Masonry>
         </div>
     );
-}
+})
 
 export default Photos
