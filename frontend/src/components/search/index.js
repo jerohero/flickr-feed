@@ -18,14 +18,29 @@ function Search(props) {
         if (!keyword)
             return
 
-        props.onSearch(keyword.target.value)
+        props.onSearch(keyword)
+    }
+
+    const clearSearch = () => {
+        setKeyword('')
+        props.onSearch('')
+    }
+
+    const handleUserInput = (e) => {
+        setKeyword(e.target.value)
     }
 
     return (
         <div className={ 'search' }>
             <img className={ 'searchIcon' } src={ SearchIcon } alt={ 'Search' }/>
-            <input className={ 'searchBar' } type={ 'text' } placeholder={ 'Search' } onChange={ setKeyword } />
-            <div className={ 'close' }>
+            <input
+                className={ 'searchBar' }
+                type={ 'text' }
+                placeholder={ 'Search' }
+                value={ keyword }
+                onChange={ handleUserInput }
+            />
+            <div className={ 'close' } onClick={ clearSearch }>
                 <img className={ 'closeIcon' } src={ CloseIcon } alt={ 'Close' }/>
             </div>
         </div>

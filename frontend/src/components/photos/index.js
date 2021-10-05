@@ -10,6 +10,7 @@ const Photos = forwardRef((props, ref) => {
     const [isFetching, setIsFetching] = useState(false)
     const currentKeyword = useRef('')
     const page = useRef(0)
+    const totalPhotos = useRef(0)
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
@@ -72,6 +73,8 @@ const Photos = forwardRef((props, ref) => {
                     return
                 }
 
+                totalPhotos.current = res.data.photos.total
+
                 const photos = res.data.photos.photo
 
                 page.current > 1
@@ -103,6 +106,9 @@ const Photos = forwardRef((props, ref) => {
 
     return (
         <div className={ 'photos' }>
+            { (currentKeyword.current && totalPhotos.current) && (
+                <p>{ totalPhotos.current }</p>
+            )}
             <Masonry
                 breakpointCols={{default: 5, 1200: 3, 600: 2, 400: 1}}
                 className={ 'photosMasonryGrid' }
