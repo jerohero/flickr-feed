@@ -7,12 +7,16 @@ function Photo(props) {
     const getPhotoUrl = () => {
         return photo.url_m
             ? photo.url_m
-            : photo.media.m
+            : photo.media?.m
     }
+
+    const photoUrl = getPhotoUrl()
 
     return (
         <div className={ 'photo' }>
-            <img src={ getPhotoUrl() } alt={ 'photo' } />
+            { photoUrl && (
+                <img src={ getPhotoUrl() } alt={ 'photo' } />
+            )}
         </div>
     );
 }
