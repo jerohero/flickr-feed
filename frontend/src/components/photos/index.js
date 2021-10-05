@@ -26,9 +26,7 @@ const Photos = forwardRef((props, ref) => {
         fetchPhotosByKeyword: (keyword) => {
             onSearch(keyword)
         },
-        fetchPublicFeed: () => {
-            fetchPublicFeed()
-        }
+        fetchPublicFeed: fetchPublicFeed
     }))
 
     const onSearch = (keyword) => {
@@ -51,6 +49,9 @@ const Photos = forwardRef((props, ref) => {
                 setPhotos(parsePhotos(res.data.items))
                 setIsFetching(false)
             })
+            .catch((err) => {
+                alert(err.message)
+            })
     }
 
     const fetchPhotosByKeyword = (keyword) => {
@@ -71,6 +72,9 @@ const Photos = forwardRef((props, ref) => {
                     : setPhotos(parsePhotos(data.photo))
 
                 setIsFetching(false)
+            })
+            .catch((err) => {
+                alert(err.message)
             })
     }
 

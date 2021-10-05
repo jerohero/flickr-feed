@@ -7,11 +7,14 @@ function Search(props) {
     const [keyword, setKeyword] = useState('')
 
     useEffect(() => {
+        if (!keyword)
+            return
+
         const typingTimeOut = setTimeout(
             search, 200
-        );
+        )
 
-        return () => clearTimeout(typingTimeOut);
+        return () => clearTimeout(typingTimeOut)
     }, [keyword])
 
     const search = () => {

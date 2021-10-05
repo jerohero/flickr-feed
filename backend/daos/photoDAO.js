@@ -1,7 +1,6 @@
 const axios = require('axios')
 
 const FORMAT_JSON = 'format=json&nojsoncallback=1'
-
 const FLICKR_FEED_ROUTE = 'feeds/'
 const FLICKR_PHOTOS_SEARCH_ROUTE = 'rest/?method=flickr.photos.search'
 
