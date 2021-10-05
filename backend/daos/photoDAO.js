@@ -14,7 +14,7 @@ exports.getPublicFeed = async () => {
 exports.getPhotosByKeyword = async (keyword, page) => {
     const searchRoute =
         `${process.env.FLICKR_API_URL}/${FLICKR_PHOTOS_SEARCH_ROUTE}&api_key=${process.env.FLICKR_API_KEY}&${FORMAT_JSON}
-        &extras=url_m&per_page=50`
+        &extras=url_m&per_page=50&sort=relevance&media=photos`
 
     return await axios.get(
         `${searchRoute}&tags=${keyword}&page=${page}`
