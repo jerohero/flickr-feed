@@ -6,6 +6,19 @@
   flex-wrap: wrap;
   justify-content: center;
 
+  &Total {
+    font-size: 18px;
+    color: $label;
+    width: 100%;
+    margin-bottom: 15px;
+    letter-spacing: .75px;
+
+    span {
+      color: $primary;
+      font-weight: bold;
+    }
+  }
+
   &MasonryGrid {
     display: flex;
     margin-left: -10px;

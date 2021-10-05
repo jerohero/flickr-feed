@@ -106,8 +106,10 @@ const Photos = forwardRef((props, ref) => {
 
     return (
         <div className={ 'photos' }>
-            { (currentKeyword.current && totalPhotos.current) && (
-                <p>{ totalPhotos.current }</p>
+            { (totalPhotos.current >= 0 && currentKeyword.current) && (
+                <p className={ 'photosTotal' }>
+                    { totalPhotos.current } results for "<span>{ currentKeyword.current }</span>"
+                </p>
             )}
             <Masonry
                 breakpointCols={{default: 5, 1200: 3, 600: 2, 400: 1}}
