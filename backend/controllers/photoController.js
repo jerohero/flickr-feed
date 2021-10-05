@@ -5,5 +5,5 @@ exports.getPhotoFeed = async (req, res) => {
 
     return feed.status !== 200
         ? res.status(feed.status).json({'error': feed.data.message})
-        : res.status(200).json(feed)
+        : res.status(200).json(feed.data)
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import './home.scss'
 import Main from '../../layouts/main'
+import Photos from '../../components/photos'
 
 function Home() {
     return (
@@ -12,7 +13,7 @@ function Home() {
                     </div>
 
                     <div className={ 'homeContentBody' }>
-
+                        <Photos />
                     </div>
                 </div>
             </div>
