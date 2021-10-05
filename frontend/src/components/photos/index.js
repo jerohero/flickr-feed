@@ -38,34 +38,24 @@ const Photos = forwardRef((props, ref) => {
         fetchPhotosByKeyword(keyword)
     }
 
-    const handleScroll = () => {
-        if (!isAllowedToFetchMore()) {
-            return
-        }
-
-        fetchPhotosByKeyword(currentKeyword.current)
-    }
-
     const fetchPublicFeed = () => {
         currentKeyword.current = ''
         setIsFetching(true)
 
         axios.get(process.env.REACT_APP_API_URL + '/photo/')
             .then((res) => {
-                setIsFetching(false)
-
                 if (!res.data) {
                     return
                 }
 
                 setPhotos(parsePhotos(res.data.items))
+                setIsFetching(false)
             })
     }
 
     const fetchPhotosByKeyword = (keyword) => {
         setIsFetching(true)
-
-        page.current = page.current + 1
+        page.current++
 
         axios.get(process.env.REACT_APP_API_URL + '/photo/search/' + keyword + '/' + page.current)
             .then((res) => {
@@ -73,13 +63,12 @@ const Photos = forwardRef((props, ref) => {
                     return
                 }
 
-                totalPhotos.current = res.data.photos.total
+                const data = res.data.photos
+                totalPhotos.current = data.total
 
-                const photos = res.data.photos.photo
-
-                page.current > 1
-                    ? addPhotos(photos)
-                    : setPhotos(parsePhotos(photos))
+                isSearching()
+                    ? addPhotos(data.photo)
+                    : setPhotos(parsePhotos(data.photo))
 
                 setIsFetching(false)
             })
@@ -99,16 +88,33 @@ const Photos = forwardRef((props, ref) => {
         </Suspense>
     }
 
+    const handleScroll = () => {
+        if (!isAllowedToFetchMore()) {
+            return
+        }
+
+        fetchPhotosByKeyword(currentKeyword.current)
+    }
+
     const isAllowedToFetchMore = () => {
         return !(Math.ceil(window.innerHeight + document.documentElement.scrollTop) !== document.documentElement.offsetHeight ||
             isFetching || !currentKeyword.current)
     }
 
+    const isSearching = () => {
+        return page.current > 1
+    }
+
     return (
         <div className={ 'photos' }>
-            { (totalPhotos.current >= 0 && currentKeyword.current) && (
-                <p className={ 'photosTotal' }>
+            { currentKeyword.current && (
+                <p className={ 'photosTopText' }>
                     { totalPhotos.current } results for "<span>{ currentKeyword.current }</span>"
+                </p>
+            )}
+            { !currentKeyword.current && (
+                <p className={ 'photosTopText' }>
+                    <span>Find</span> your inspiration
                 </p>
             )}
             <Masonry

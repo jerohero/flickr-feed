@@ -3,6 +3,7 @@
 .home {
   &Content {
     margin-top: 160px;
+    margin-bottom: 20px;
 
     &Search {
       @include card;
@@ -13,7 +14,7 @@
     &Body {
       @include card;
       min-height: 772px;
-      padding: 23px 16px;
+      padding: 23px 16px 4px;
     }
   }
 }

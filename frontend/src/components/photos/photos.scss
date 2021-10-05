@@ -6,12 +6,13 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  &Total {
+  &TopText {
     font-size: 18px;
     color: $label;
     width: 100%;
     margin-bottom: 15px;
     letter-spacing: .75px;
+    margin-left: 4px;
 
     span {
       color: $primary;

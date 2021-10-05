@@ -20,7 +20,6 @@ function Home() {
                     <div className={ 'homeContentSearch' }>
                         <Search onSearch={ onSearch }/>
                     </div>
-
                     <div className={ 'homeContentBody' }>
                         <Photos ref={ photosRef }/>
                     </div>

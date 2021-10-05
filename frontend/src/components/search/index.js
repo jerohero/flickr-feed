@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '../../static/icons/search.svg'
 import CloseIcon from '../../static/icons/close.svg'
 import './search.scss'
@@ -18,13 +18,13 @@ function Search(props) {
         props.onSearch(keyword)
     }
 
+    const handleUserInput = (e) => {
+        setKeyword(e.target.value)
+    }
+
     const clearSearch = () => {
         setKeyword('')
         props.onSearch('')
-    }
-
-    const handleUserInput = (e) => {
-        setKeyword(e.target.value)
     }
 
     return (
