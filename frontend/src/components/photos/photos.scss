@@ -22,7 +22,7 @@
   &MasonryGrid {
     display: flex;
     margin-left: -10px;
-    width: auto;
+    width: 100%;
 
     &Column {
       padding-left: 10px;
@@ -30,6 +30,22 @@
 
       & > div {
         margin-bottom: 3px;
+      }
+    }
+  }
+
+  @include mobile-all {
+    .photos {
+      &MasonryGrid {
+        margin-left: -5px;
+
+        &Column {
+          padding-left: 5px;
+
+          & > div {
+            margin-bottom: -2px;
+          }
+        }
       }
     }
   }
