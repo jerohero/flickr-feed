@@ -8,7 +8,7 @@ function Search(props) {
 
     useEffect(() => {
         const typingTimeOut = setTimeout(
-            search, 500
+            search, 200
         );
 
         return () => clearTimeout(typingTimeOut);

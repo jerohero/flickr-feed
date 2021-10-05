@@ -1,11 +1,13 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useState, lazy, Suspense } from 'react'
 import axios from 'axios'
 import Masonry from 'react-masonry-css'
 import './photos.scss'
-import Photo from '../photo'
+import Spinner from '../spinner'
+const Photo = lazy(() => import('../photo'));
 
 const Photos = forwardRef((props, ref) => {
     const [photos, setPhotos] = useState([])
+    const [isFetching, setIsFetching] = useState(false)
 
     useEffect(() => {
         fetchPublicFeed()
@@ -21,8 +23,12 @@ const Photos = forwardRef((props, ref) => {
     }))
 
     const fetchPublicFeed = () => {
+        setIsFetching(true)
+
         axios.get(process.env.REACT_APP_API_URL + '/photo/')
             .then((res) => {
+                setIsFetching(false)
+
                 if (!res.data) {
                     return
                 }
@@ -32,8 +38,12 @@ const Photos = forwardRef((props, ref) => {
     }
 
     const fetchPhotosByKeyword = (keyword) => {
+        setIsFetching(true)
+
         axios.get(process.env.REACT_APP_API_URL + '/photo/search/' + keyword)
             .then((res) => {
+                setIsFetching(false)
+
                 if (!res.data) {
                     return
                 }
@@ -47,7 +57,9 @@ const Photos = forwardRef((props, ref) => {
     }
 
     const parsePhoto = (photo) => {
-        return <Photo photo={ photo } key={ photo.id ? photo.id : photo.link }/>
+        return <Suspense fallback={<div/>} key={ photo.id ? photo.id : photo.link }>
+            <Photo photo={ photo }/>
+        </Suspense>
     }
 
     return (
@@ -59,6 +71,9 @@ const Photos = forwardRef((props, ref) => {
             >
                 { photos }
             </Masonry>
+            { isFetching && (
+                <Spinner />
+            )}
         </div>
     );
 })
