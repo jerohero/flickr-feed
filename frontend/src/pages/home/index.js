@@ -2,6 +2,7 @@ import React from 'react'
 import './home.scss'
 import Main from '../../layouts/main'
 import Photos from '../../components/photos'
+import Search from '../../components/search'
 
 function Home() {
     return (
@@ -9,7 +10,7 @@ function Home() {
             <div className={ 'home' }>
                 <div className={ 'homeContent' }>
                     <div className={ 'homeContentSearch' }>
-
+                        <Search />
                     </div>
 
                     <div className={ 'homeContentBody' }>

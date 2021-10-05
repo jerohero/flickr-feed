@@ -12,23 +12,23 @@ function Photos() {
     }, [])
 
     const fetchPublicFeed = () => {
-        // axios.get(process.env.REACT_APP_API_URL + '/photo/')
-        //     .then((res) => {
-        //         if (!res.data) {
-        //             return
-        //         }
-        //
-        //         setPhotos(parsePhotos(res.data.items))
-        //     })
-
-        axios.get(process.env.REACT_APP_API_URL + '/photo/search/dog')
+        axios.get(process.env.REACT_APP_API_URL + '/photo/')
             .then((res) => {
                 if (!res.data) {
                     return
                 }
 
-                setPhotos(parsePhotos(res.data.photos.photo))
+                setPhotos(parsePhotos(res.data.items))
             })
+
+        // axios.get(process.env.REACT_APP_API_URL + '/photo/search/dog')
+        //     .then((res) => {
+        //         if (!res.data) {
+        //             return
+        //         }
+        //
+        //         setPhotos(parsePhotos(res.data.photos.photo))
+        //     })
     }
 
     const parsePhotos = (photos) => {
