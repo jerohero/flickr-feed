@@ -32,7 +32,11 @@ function Photos() {
 
     return (
         <div className={ 'photos' }>
-            <Masonry breakpointCols={4} className={ 'photosMasonryGrid' } columnClassName={ 'photosMasonryGridColumn' }>
+            <Masonry
+                breakpointCols={{default: 5, 1200: 3, 600: 2, 400: 1}}
+                className={ 'photosMasonryGrid' }
+                columnClassName={ 'photosMasonryGridColumn' }
+            >
                 { photos }
             </Masonry>
         </div>
