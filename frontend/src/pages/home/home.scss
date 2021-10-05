@@ -13,8 +13,8 @@
 
     &Body {
       @include card;
-      height: 772px;
-      padding: 0 16px;
+      min-height: 772px;
+      padding: 60px 16px;
     }
   }
 }

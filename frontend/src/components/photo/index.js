@@ -6,7 +6,7 @@ function Photo(props) {
 
     return (
         <div className={ 'photo' }>
-            <img src={ photo.media } alt=""/>
+            <img src={ photo.media.m } alt=""/>
         </div>
     );
 }

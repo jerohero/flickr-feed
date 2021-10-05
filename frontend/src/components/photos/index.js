@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import Masonry from 'react-masonry-css'
 import './photos.scss'
+import Photo from '../photo'
 
 function Photos() {
+    const [photos, setPhotos] = useState([])
+
     useEffect(() => {
         fetchPublicFeed()
     }, [])
@@ -13,16 +17,25 @@ function Photos() {
                 if (!res.data) {
                     return
                 }
-                parsePhotos(res.data.items)
+
+                setPhotos(parsePhotos(res.data.items))
             })
     }
 
     const parsePhotos = (photos) => {
-        console.log(photos)
+        return photos.map(parsePhoto)
+    }
+
+    const parsePhoto = (photo) => {
+        return <Photo photo={ photo } key={ photo.link }/>
     }
 
     return (
-        <p>d</p>
+        <div className={ 'photos' }>
+            <Masonry breakpointCols={4} className={ 'photosMasonryGrid' } columnClassName={ 'photosMasonryGridColumn' }>
+                { photos }
+            </Masonry>
+        </div>
     );
 }
 

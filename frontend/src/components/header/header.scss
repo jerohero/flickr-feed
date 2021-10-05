@@ -9,6 +9,7 @@ nav {
   background-color: $primary;
   position: fixed;
   width: 100%;
+  z-index: 50;
 
   #header-text {
     font-size: 48px;
