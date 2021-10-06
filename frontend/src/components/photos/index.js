@@ -60,7 +60,7 @@ const Photos = forwardRef((props, ref) => {
 
         axios.get(process.env.REACT_APP_API_URL + '/photo/search/' + keyword + '/' + page.current)
             .then((res) => {
-                if (!res.data) {
+                if (!res.data || keyword !== currentKeyword.current) {
                     return
                 }
 
