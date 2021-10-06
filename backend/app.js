@@ -1,15 +1,15 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       https = require('https'),
-      http = require('http'),
       cors = require('cors'),
+      fs = require('fs'),
       photoRouter = require('./routes/photoRoutes')
 require('dotenv').config()
 
-const { FRONTEND_URL, PORT } = process.env
+const PORT = process.env.PORT || 3001
 
 const corsOptions = {
-  origin: [FRONTEND_URL]
+  origin: process.env.FRONTEND_URL
 }
 
 const app = express()
@@ -23,7 +23,11 @@ app.use(cors(corsOptions))
 app.use('/api/photo', photoRouter)
 
 // Server
-// const httpsServer = https.createServer(app)
-// httpsServer.listen(PORT)
-const httpServer = http.createServer(app)
-httpServer.listen(PORT)
+const httpsServer = https.createServer({
+  key: fs.readFileSync(process.env.PRIVKEY_PATH),
+  cert: fs.readFileSync(process.env.FULLCHAIN_PATH),
+}, app)
+
+httpsServer.listen(PORT,() => {
+  console.log(`Server running at port: ${PORT}`);
+})
