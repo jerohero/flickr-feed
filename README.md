@@ -27,16 +27,11 @@ Create .env file in _frontend_:
 #### Backend
 Create .env file in _backend_:
 
-`
+```
 FLICKR_API_KEY=[FLICKR API KEY https://www.flickr.com/services/apps/create/apply]
-
 FRONTEND_URL=http://localhost:3000
-
 PORT=3000
-
 FLICKR_API_URL=https://www.flickr.com/services
-
 PRIVKEY_PATH=[CERTBOT PRIVKEY PATH (for hosting https)]
-
 FULLCHAIN_PATH=[CERTBOT FULLCHAIN PATH (for hosting https)]
-`
+```
