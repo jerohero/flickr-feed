@@ -21,7 +21,7 @@ Execute in the _frontend_ and _backend_ directories:
 #### Frontend
 Create .env file in _frontend_:
 
-`REACT_APP_API_URL=https://localhost:3000/api`
+`REACT_APP_API_URL=http://localhost:3000/api`
 
 
 #### Backend
